@@ -62,7 +62,26 @@ function printGifs(topicWord){
 	    	});
 	    	newGifImg.attr("id", "new-gif-" + i);
 	    	newGifDiv.append(newGifImg);
+
+	    	var secondQueryURL = "http://api.giphy.com/v1/gifs/" + response.data.id + "?api_key=" + APIkey;
 	    	
+	    		$.ajax({
+
+			    	url: secondQueryURL,
+			    	method: "GET"
+
+				}).done(function(response2) {
+
+			    	//adds rating to div
+			    	var newRatingDiv = $("<div>");
+			    	var gifRating = response2.data.rating;
+			    	newRatingDiv.html("Rated: " + gifRating);
+			    	newGifDiv.append(newRatingDiv);
+			    	console.log(response2);
+
+			    });
+
+
 	    	//appends each new div to our page
 	    	$("#gifs-container").append(newGifDiv);
 
