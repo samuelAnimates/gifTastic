@@ -15,14 +15,20 @@ function initializePage() {
 
 };
 
+//function that creates a set number of GIFs containing a random GIF each from GIPHY
 function printGifs(topicWord){
 
+	//variables to set the URL for our API call
 	var APIkey = "dc6zaTOxFJmzC";
     var queryURL = "http://api.giphy.com/v1/gifs/random?api_key=" + APIkey + "&tag=" + topicWord;
+    
+    //variable that sets how many gifs we want to print to the page at once
     var gifsTotalNum = 10;
+    
     
     for (i=0; i<gifsTotalNum; i++){
 
+    	//querying the Giphy API
 		$.ajax({
 
 	    	url: queryURL,
@@ -30,9 +36,22 @@ function printGifs(topicWord){
 
 		}).done(function(response) {
 
-			var newGifURL = response.data.fixed_height_small_url;
-	    	var newGifDisplay = $("<img src='" + newGifURL + "'>");
-	    	$("#gifs-div").append(newGifDisplay);
+			//creates a new div to hold each random gif
+			var newGifDiv = $("<div>");
+			newGifDiv.addClass("pull-left");
+
+			//puts a new img element for a random gif still 
+	    	var newGifImg = $("<img>", {
+	    		"src": response.data.fixed_height_small_still_url,
+	    		"data-still": response.data.fixed_height_small_still_url,
+	    		"data-gif": response.data.fixed_height_small_url,
+	    		"class": "topic-gif"
+	    	});
+	    	newGifImg.attr("id", "new-gif-" + i);
+	    	newGifDiv.append(newGifImg);
+	    	
+	    	//appends each new div to our page
+	    	$("#gifs-container").append(newGifDiv);
 
 		});
 
@@ -42,15 +61,18 @@ function printGifs(topicWord){
 
 //run the initializePage function once the page loads
 $(document).ready(function (){
-
 	
 	initializePage();
 
 });
 
 
+
 $(document).on("click", ".createGifsButton", function() {
 
+	$("#gifs-div").empty();
+
+	//run the PrintGifs function to print gifs corresponding to the button pressed
 	var animalButtonPressed = this.id;
 	printGifs(animalButtonPressed);
 
