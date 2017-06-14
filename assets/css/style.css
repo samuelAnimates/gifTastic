@@ -1,6 +1,57 @@
+.bg-aqua{
+
+	background-color: Aqua;
+}
+
+.bg-circles{
+
+	background-image: url("../images/scales.png");
+
+}
+
 .bg-blue {
 
 	background-color: DodgerBlue;
 
 }
 
+.bg-lightblue{
+
+	background-color: SkyBlue;
+}
+
+.disp-table{
+
+	display: table;
+
+}
+
+.ht-100pct{
+
+	height: 100%;
+
+}
+
+.margin-10px{
+
+	margin: 10px 10px 10px 10px;
+
+}
+
+.pad-10px{
+
+	padding: 10px 10px 10px 10px;
+
+}
+
+.pad-20px{
+
+	padding: 20px 20px 20px 20px;
+
+}
+
+.row [class*="col-"] {
+    float: none;
+    display: table-cell;
+    vertical-align: top;
+}

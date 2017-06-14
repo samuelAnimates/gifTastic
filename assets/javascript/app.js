@@ -20,7 +20,7 @@ function initializePage() {
 function createButton(inputString){
 
 	var newButton = $("<button>");
-	newButton.addClass("createGifsButton");
+	newButton.addClass("createGifsButton margin-10px");
 	newButton.attr("id", inputString);
 	newButton.html(inputString);
 	$("#buttons-div").prepend(newButton);
@@ -50,7 +50,7 @@ function printGifs(topicWord){
 
 			//creates a new div to hold each random gif
 			var newGifDiv = $("<div>");
-			newGifDiv.addClass("pull-left");
+			newGifDiv.addClass("pad-10px pull-left");
 
 			//puts a new img element for a random gif still 
 	    	var newGifImg = $("<img>", {
@@ -134,9 +134,11 @@ $(document).on("click", ".topic-gif", function() {
 
 });
 
+
 $(document).on("click", "#makeBtnButton", function() {
 
 	var newGifTopic = $("#user-input-form").val();
+	$("#user-input-form").val("");
 	createButton(newGifTopic);
 
 });
